@@ -1,18 +1,15 @@
 import Bot from "./bot";
-import { loadCommands } from "./features/commands";
+import { loadCommands } from "./lib/commands";
 
 const bot = Bot().start()
 
 const main = async () => {
-	const commands = await loadCommands()
+	const { commands, commandListWithOutExecute } = await loadCommands()
 
 	bot.on("ready", () => {
 		if (!bot.user) return
 
-		const commandList = commands.map(({ execute, ...rest }) => rest)
-
-    bot.application?.commands.set(commandList)
-
+		bot.application?.commands.set(commandListWithOutExecute)
 
 		bot.user.setActivity("Netacad")
 		console.log("O bot esta na rede.")

@@ -1,18 +1,26 @@
-import { APIApplicationCommandOption, ChatInputCommandInteraction, Interaction } from "discord.js";
+import {
+  APIApplicationCommandOption,
+  ChatInputCommandInteraction,
+  CommandInteraction,
+  Interaction,
+  PermissionsBitField
+} from "discord.js";
 import { readdirSync } from "fs";
 
-export type Command = (event: ChatInputCommandInteraction) => void
+export type Command = (event: CommandInteraction) => void
 
 export interface Config {
 	name?: string
-  description?: string
+	description?: string
+	permissions?: PermissionsBitField[]
 	options?: APIApplicationCommandOption[]
 }
 
 interface CommandBot {
 	name: string
 	description: string
-	execute: (interaction: Interaction) => void
+	default_member_permissions: PermissionsBitField[]
+	execute: Command
 }
 
 export const loadCommands = async () => {
@@ -23,9 +31,10 @@ export const loadCommands = async () => {
     const command = await import(`${process.cwd()}/src/commands/${file}`)
     
 		const newCommand = {
-			...command.config,
+			...command.config?.options,
 			name: command.config?.name ?? file.split(".")[0],
 			description: command.config?.description ?? "No description",
+			default_member_permissions: command.config?.permissions ?? [],
 			execute: command.default
 		} as CommandBot
 
@@ -38,6 +47,10 @@ export const loadCommands = async () => {
 		commands.push(newCommand)
 	}
 
-	return commands
+			const commandListWithOutExecute = commands.map(({ execute, ...rest }) => rest)
+
+
+
+	return { commands, commandListWithOutExecute }
 }
 

@@ -1,11 +1,12 @@
 {
   "name": "bot",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
     "start": "ts-node src",
-    "dev": "nodemon src/index.ts -q"
+    "dev": "nodemon src/index.ts -q",
+    "build": ""
   },
   "dependencies": {
     "discord.js": "^14.6.0",
