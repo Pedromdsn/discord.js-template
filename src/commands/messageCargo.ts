@@ -1,6 +1,6 @@
-import { EmbedBuilder } from "discord.js";
+import { EmbedBuilder, PermissionsBitField } from "discord.js";
 
-import { Command, Config } from "../features/commands";
+import { Command, Config } from "../lib/commands";
 
 const start: Command = (e) => {
 	if (!e.channel) return
@@ -14,7 +14,7 @@ const start: Command = (e) => {
 }
 
 export const config: Config = {
-  
+  permissions: [PermissionsBitField.Flags.Administrator],
 }
 
 export default start

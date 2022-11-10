@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node src",
-    "dev": "nodemon src/index.ts -q",
-    "build": ""
+    "dev": "nodemon src/index.ts -q"
   },
   "dependencies": {
     "discord.js": "^14.6.0",

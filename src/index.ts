@@ -1,7 +1,7 @@
 import Bot from "./bot";
 import { loadCommands } from "./lib/commands";
 
-const bot = Bot().start()
+export const bot = Bot().start()
 
 const main = async () => {
 	const { commands, commandListWithOutExecute } = await loadCommands()
@@ -26,4 +26,3 @@ const main = async () => {
 }
 
 main()
-export { bot }
