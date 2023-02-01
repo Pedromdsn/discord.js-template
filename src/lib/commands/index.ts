@@ -1,5 +1,5 @@
-import { APIApplicationCommandOption, CommandInteraction, PermissionResolvable, PermissionsBitField } from "discord.js";
-import { readdirSync } from "fs";
+import { APIApplicationCommandOption, CommandInteraction, PermissionResolvable } from "discord.js"
+import { readdirSync } from "fs"
 
 export type Command = (event: CommandInteraction) => void
 

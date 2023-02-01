@@ -1,4 +1,4 @@
-import { Command } from "../lib/commands";
+import { Command } from "@/lib/commands"
 
 const start: Command = (e) => {
 	e.reply("Pong!")

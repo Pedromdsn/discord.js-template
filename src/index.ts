@@ -1,5 +1,6 @@
-import Bot from "./bot";
-import { loadCommands } from "./lib/commands";
+import Bot from "@/bot"
+import { loadCommands } from "@/lib/commands"
+import { ActivityType } from "discord.js"
 
 export const bot = Bot().start()
 
@@ -11,7 +12,7 @@ const main = async () => {
 
 		bot.application?.commands.set(commandListWithOutExecute)
 
-		bot.user.setActivity("Netacad")
+		bot.user.setActivity("🎮", { type: ActivityType.Playing })
 		console.log("O bot esta na rede.")
 	})
 
